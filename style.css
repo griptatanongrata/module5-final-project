@@ -5,3 +5,93 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.navbar {
+  flex-direction: column;
+  display: flex;
+  height: 326px;
+  padding: 40px 15px;
+  align-items: center;
+}
+
+.content-wrapper {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.navbar .logo {
+  color: rgb(139, 189, 247);
+  height: 40px;
+  width: 150px;
+}
+
+.navbar .links {
+  width: 100%;
+  max-width: 430px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+
+.navbar .link {
+  position: relative;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: rgb(151, 194, 240);
+}
+
+.btn-contact {
+  display: flex;
+  max-height: 48px;
+  min-height: 48px;
+  padding: 12px 40px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.35s ease;
+  border: 2px rgb(35, 87, 255);
+  cursor: pointer;
+  border-radius: 50px;
+  background-color: #2353ee;
+  color: #fff;
+}
+
+.headline {
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.1em;
+  max-width: 1000px;
+  margin-bottom: 40px;
+  color: #5da9f0;
+  line-height: 1.25;
+}
+
+.input-wrap {
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  border-radius: 50px;
+  overflow: hidden;
+  color: #fff;
+}
+
+input {
+  color: rgba(0, 0, 0, 0.85);
+  width: 100%;
+  max-width: 800px;
+  height: 60px;
+  padding-left: 20px;
+}
