@@ -1,7 +1,9 @@
 //API 1: http://www.omdbapi.com/?apikey=37adbdf5&
 
 async function main() {
-  const movies = await fetch(`http://www.omdbapi.com/?apikey=37adbdf5&s=`);
+  const movies = await fetch(
+    `http://www.omdbapi.com/?apikey=&[apikey]&gits=${movie.Title}`,
+  );
   const movieData = await movies.json();
   const movieListEl = document.querySelector(`.movie-list`);
   console.log(movieData);
