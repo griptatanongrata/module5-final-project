@@ -8,7 +8,7 @@ async function main() {
   movieListEl.innerHTML = movieData.Search.map(
     (movie) =>
       `<div class="movie-card">
-      <figure class="movie-card__container">
+      <figure class="movie-card--container">
       <img class="movie-poster" src="${movie.Poster} alt=""></figure>
       <div class="movie-title">${movie.Title}</div>
       <div class="movie-year">${movie.Year}</div>
@@ -19,3 +19,11 @@ async function main() {
 }
 
 main();
+
+function openMenu() {
+  document.body.classList += " menu-open";
+}
+
+function closeMenu() {
+  document.body.classList.remove("menu-open");
+}
