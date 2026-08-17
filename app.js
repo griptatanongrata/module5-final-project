@@ -2,7 +2,7 @@
 
 async function main() {
   const movies = await fetch(
-    `http://www.omdbapi.com/?apikey=&[apikey]&gits=${movie.Title}`,
+    `http://www.omdbapi.com/?apikey=&[apikey]&s=${movie.Title}`,
   );
   const movieData = await movies.json();
   const movieListEl = document.querySelector(`.movie-list`);
