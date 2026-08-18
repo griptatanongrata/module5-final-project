@@ -1,50 +1,49 @@
-let movie;
-
-const Title = localStorage.getItem("Title");
-
 async function onSearchChange(event) {
   const Title = event.target.value;
   renderMovies(Title);
 }
 
 async function renderMovies(Title) {
+  if (!Title) return;
+
   const movieListEl = document.querySelector(`.movie-list`);
+  const loadingEl = document.querySelector(".loading-state");
 
-  movieListEl.classList += ` loading-state`;
+  loadingEl.classList.add("show");
+  movieListEl.innerHTML = "";
 
-  if (!movie) {
-    movie = await movieHTML(movie);
+  try {
+    const movies = await fetch(
+      `http://www.omdbapi.com/?apikey=37adbdf5&s=${Title}`,
+    );
+
+    const movieData = await movies.json();
+
+    if (!movieData.Search) {
+      movieListEl.innerHTML = "<p>No movies found.<p>";
+      return;
+    }
+
+    movieListEl.innerHTML = movieData.Search.map((movie) =>
+      movieHTML(movie),
+    ).join("");
+  } catch (error) {
+    console.error(error);
+  } finally {
+    loadingEl.classList.remove("show");
   }
-
-  movieListEl.classList.remove(`loading-state`);
-
-  const movies = await fetch(
-    `http://www.omdbapi.com/?apikey=[apikey]&s=${Title}`,
-  );
-  const movieData = await movies.json();
-  movieListEl.innerHTML = movieData.Search.map((movie) =>
-    movieHTML(movie),
-  ).join("");
 }
 
 function movieHTML(movie) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        `<div class="movie-card">
+  return `<div class="movie-card">
       <figure class="movie-card--container">
-      <img class="movie-poster" src="${movie.Poster} alt=""></figure>
+      <img class="movie-poster" src="${movie.Poster}" alt="${movie.Title}"></figure>
       <div class="movie-title">${movie.Title}</div>
       <div class="movie-year">${movie.Year}</div>
       <div class="movie-id">${movie.imdbID}</div>
       </div>
-      `,
-      ]);
-    }, 1000);
-  });
+      `;
 }
-
-renderMovies(Title);
 
 function openMenu() {
   document.body.classList += " menu-open";

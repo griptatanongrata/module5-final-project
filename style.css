@@ -246,15 +246,15 @@ input {
   margin: 80px 0;
   width: 100%;
   justify-content: center;
-  display: flex;
-}
-
-.movie__loading--spinner {
   display: none;
 }
 
-.loading-state .movie__loading--spinner {
+.movie__loading--spinner {
   display: block;
+}
+
+.loading-state.show {
+  display: flex;
 }
 
 .fa-spinner {
