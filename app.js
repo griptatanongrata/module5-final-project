@@ -1,13 +1,37 @@
-async function main() {
+let movie;
+
+const Title = localStorage.getItem("Title");
+
+async function onSearchChange(event) {
+  const Title = event.target.value;
+  renderMovies(Title);
+}
+
+async function renderMovies(Title) {
+  const movieListEl = document.querySelector(`.movie-list`);
+
+  movieListEl.classList += ` loading-state`;
+
+  if (!movie) {
+    movie = await movieHTML(movie);
+  }
+
+  movieListEl.classList.remove(`loading-state`);
+
   const movies = await fetch(
-    `http://www.omdbapi.com/?apikey=37adbdf5&s=Batman`,
+    `http://www.omdbapi.com/?apikey=[apikey]&s=${Title}`,
   );
   const movieData = await movies.json();
-  const movieListEl = document.querySelector(`.movie-list`);
-  console.log(movieData);
-  movieListEl.innerHTML = movieData.Search.map(
-    (movie) =>
-      `<div class="movie-card">
+  movieListEl.innerHTML = movieData.Search.map((movie) =>
+    movieHTML(movie),
+  ).join("");
+}
+
+function movieHTML(movie) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve([
+        `<div class="movie-card">
       <figure class="movie-card--container">
       <img class="movie-poster" src="${movie.Poster} alt=""></figure>
       <div class="movie-title">${movie.Title}</div>
@@ -15,10 +39,12 @@ async function main() {
       <div class="movie-id">${movie.imdbID}</div>
       </div>
       `,
-  ).join("");
+      ]);
+    }, 1000);
+  });
 }
 
-main();
+renderMovies(Title);
 
 function openMenu() {
   document.body.classList += " menu-open";

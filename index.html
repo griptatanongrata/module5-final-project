@@ -50,7 +50,7 @@
         <div class="content-wrapper--two">
           <h1 class="headline">Browse Movies</h1>
           <div class="input-wrap">
-            <input type="text" placeholder="Search For Movies" />
+            <input type="text" placeholder="Search For Movies" onchange="onSearchChange(event)" />
             <div class="search-wrapper">
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
@@ -67,7 +67,7 @@
           <div class="movie"></div>
           <div class="content-wrapper">
             <div class="loading-state">
-              <i class="fa-solid fa-spinner"></i>
+              <i class="fa-solid fa-spinner movie__loading--spinner"></i>
             </div>
           </div>
         </div>

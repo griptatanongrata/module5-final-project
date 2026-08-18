@@ -249,6 +249,14 @@ input {
   display: flex;
 }
 
+.movie__loading--spinner {
+  display: none;
+}
+
+.loading-state .movie__loading--spinner {
+  display: block;
+}
+
 .fa-spinner {
   color: blue;
   animation: rotate-data 1s linear infinite;
