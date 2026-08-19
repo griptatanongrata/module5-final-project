@@ -14,7 +14,7 @@ async function renderMovies(Title) {
 
   try {
     const movies = await fetch(
-      `http://www.omdbapi.com/?apikey=37adbdf5&s=${Title}`,
+      `https://www.omdbapi.com/?apikey=37adbdf5&s=${Title}`,
     );
 
     const movieData = await movies.json();
