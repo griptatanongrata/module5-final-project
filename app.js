@@ -37,16 +37,20 @@ async function renderMovies(Title) {
 
 function displayMovies(movies) {
   const movieListEl = document.querySelector(`.movie-list`);
-  movieListEl.innerHTML = movieData.Search.map((movie) =>
-    movieHTML(movie),
-  ).join("");
+  movieListEl.innerHTML = movies.map((movie) => movieHTML(movie)).join("");
 }
 
-function filterByLetter(event) {
+async function filterByLetter(event) {
   const selectedLetter = event.target.value;
+
+  if (!selectedLetter) return;
+
+  await renderMovies(selectedLetter);
+
   const filteredMovies = allMovies.filter((movie) =>
-    movie.Title.startsWith(selectedLetter),
+    movie.Title.toUpperCase().startsWith(selectedLetter.toUpperCase()),
   );
+
   displayMovies(filteredMovies);
 }
 
