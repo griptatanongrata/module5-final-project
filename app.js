@@ -1,3 +1,5 @@
+let allMovies = [];
+
 async function onSearchChange(event) {
   const Title = event.target.value;
   renderMovies(Title);
@@ -14,7 +16,7 @@ async function renderMovies(Title) {
 
   try {
     const movies = await fetch(
-      `https://www.omdbapi.com/?apikey=37adbdf5&s=${Title}`,
+      `https://www.omdbapi.com/?apikey=[apikey]&s=${Title}`,
     );
 
     const movieData = await movies.json();
@@ -24,14 +26,28 @@ async function renderMovies(Title) {
       return;
     }
 
-    movieListEl.innerHTML = movieData.Search.map((movie) =>
-      movieHTML(movie),
-    ).join("");
+    allMovies = movieData.Search;
+    displayMovies(allMovies);
   } catch (error) {
     console.error(error);
   } finally {
     loadingEl.classList.remove("show");
   }
+}
+
+function displayMovies(movies) {
+  const movieListEl = document.querySelector(`.movie-list`);
+  movieListEl.innerHTML = movieData.Search.map((movie) =>
+    movieHTML(movie),
+  ).join("");
+}
+
+function filterByLetter(event) {
+  const selectedLetter = event.target.value;
+  const filteredMovies = allMovies.filter((movie) =>
+    movie.Title.startsWith(selectedLetter),
+  );
+  displayMovies(filteredMovies);
 }
 
 function movieHTML(movie) {

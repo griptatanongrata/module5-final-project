@@ -272,8 +272,13 @@ input {
   }
 }
 
+#filter {
+  padding: 10px;
+}
+
 footer {
   background-color: #242424;
+  margin-top: 60px;
 }
 
 .footer__logo {
@@ -371,7 +376,7 @@ footer {
   }
 
   footer {
-    margin-top: 40px;
+    margin-top: 60px;
   }
 }
 
