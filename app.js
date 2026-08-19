@@ -16,7 +16,7 @@ async function renderMovies(Title) {
 
   try {
     const movies = await fetch(
-      `https://www.omdbapi.com/?apikey=[apikey]&s=${Title}`,
+      `https://www.omdbapi.com/?apikey=37adbdf5&s=${Title}`,
     );
 
     const movieData = await movies.json();
@@ -40,12 +40,13 @@ function displayMovies(movies) {
   movieListEl.innerHTML = movies.map((movie) => movieHTML(movie)).join("");
 }
 
-async function filterByLetter(event) {
+function filterByLetter(event) {
   const selectedLetter = event.target.value;
 
-  if (!selectedLetter) return;
-
-  await renderMovies(selectedLetter);
+  if (!selectedLetter) {
+    displayMovies(allMovies);
+    return;
+  }
 
   const filteredMovies = allMovies.filter((movie) =>
     movie.Title.toUpperCase().startsWith(selectedLetter.toUpperCase()),
